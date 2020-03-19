@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const PATHS = {
     src: path.join(__dirname, '../src'),
@@ -20,12 +21,6 @@ module.exports = {
         filename: 'bundle.js',
         path: PATHS.dist
     },
-    // devServer: {
-    //     host: 'localhost',
-    //     port: 1209,
-    //     stats: 'errors-only',
-    //     open: true
-    // },
     module: {
         rules: [{
             test: /\.js$/,
@@ -37,7 +32,7 @@ module.exports = {
             test: /\.(svg|ttf|woff)$/,
             loader: 'file-loader',
             options: {
-                name: '[name].[ext]'
+                name: '/fonts/[name]/[name].[ext]'
             }
         }, {
             test: /\.sass$/,
@@ -57,10 +52,11 @@ module.exports = {
     plugins: [
         ...PAGES.map(page => new HtmlWebpackPlugin({
             template: `${PAGES_DIR}/${page}`,
-            filename: `./${page.replace(/\.pug/, '.html')}`
+            filename: `./pages/${page.replace(/\.pug/, '.html')}`
         })),
         new MiniCssExtractPlugin({
-            filename: "[name].css"
-        })
+            filename: "./bandle.css"
+        }),
+        new CleanWebpackPlugin()
     ]
 }

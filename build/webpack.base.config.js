@@ -34,6 +34,12 @@ module.exports = {
             test: /\.pug$/,
             loader: 'pug-loader'
         }, {
+            test: /\.(svg|ttf|woff)$/,
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]'
+            }
+        }, {
             test: /\.sass$/,
             use: [
                 'style-loader',

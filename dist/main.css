@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url(Montserrat.svg) format("svg");
+  src: url(Montserrat.ttf) format("truetype");
+  src: url(Montserrat.woff) format("woff"); }
+
 h1 {
   background: blue; }
 
